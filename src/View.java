@@ -15,6 +15,7 @@ class View extends JFrame {
     View() {
         super("Binary changer");
         setSize(750, 600);
+        setLocationRelativeTo(null);
         setLayout(new FlowLayout());
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);

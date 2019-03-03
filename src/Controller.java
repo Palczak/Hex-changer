@@ -58,6 +58,7 @@ class Controller {
         conflictList.add(p2);
         conflictList.add(p3);
         view.fixConflict(conflictList);
+        System.out.println("dupa");
 
     }
 
