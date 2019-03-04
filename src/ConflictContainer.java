@@ -33,4 +33,8 @@ public class ConflictContainer extends JPanel {
         return index+"";
         //return (index / 8) + 1 + "";
     }
+
+    public ArrayList<ConflictCheckBox> getCheckBoxList() {
+        return checkBoxList;
+    }
 }

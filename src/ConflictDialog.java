@@ -14,11 +14,12 @@ class ConflictDialog extends JDialog {
 
         setLayout(new FlowLayout());
         setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        confirmButton.addActionListener(e -> getList());
 
         this.conflictList = conflictList;
         this.containerList = new ArrayList<>();
+
         confirmButton = new JButton("Wykonaj zaznaczone instrukcje");
+        confirmButton.addActionListener(e -> updateConflictList());
 
         for (FindedPosition findedPosition : conflictList) {
             containerList.add(new ConflictContainer(findedPosition));
@@ -30,12 +31,31 @@ class ConflictDialog extends JDialog {
         }
 
         add(confirmButton);
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         pack();
         setVisible(true);
     }
 
-    public ArrayList<FindedPosition> getList() {
-        return  null;
+    private void updateConflictList() {
+        ArrayList<FindedPosition> updatedList = new ArrayList<>();
+        for (ConflictContainer container : containerList) {
+            FindedPosition newPosition = new FindedPosition();
+            for (ConflictCheckBox checkBox : container.getCheckBoxList()) {
+                if(checkBox.isSelected()) {
+                    newPosition.add(checkBox.getHexIndex());
+                }
+            }
+            if(!newPosition.isEmpty()) {
+                updatedList.add(newPosition);
+            }
+        }
+
+
+        conflictList = updatedList;
+        hide();
+    }
+
+    public ArrayList<FindedPosition> getConflictList() {
+        return  conflictList;
     }
 }
