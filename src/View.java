@@ -117,8 +117,12 @@ class View extends JFrame {
 
     ArrayList<FindedPosition> fixConflict(ArrayList<FindedPosition> conflictList) {
         ConflictDialog conflictDialog = new ConflictDialog(this, conflictList);
-        System.out.println(conflictDialog.getConflictList());
-        return conflictDialog.getConflictList();
+        if (conflictDialog.isDisplayable()) {
+            conflictDialog.dispose();
+            return conflictDialog.getConflictList();
+        } else {
+            return new ArrayList<>();
+        }
     }
 
 

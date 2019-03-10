@@ -24,7 +24,9 @@ class Hex extends ArrayList<Integer> {
 
      void replace(int startIndex, Hex hex) {
         for(int value : hex) {
-            this.set(startIndex, value);
+            if(value != -1) {
+                this.set(startIndex, value);
+            }
             startIndex++;
         }
     }

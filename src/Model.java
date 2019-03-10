@@ -65,4 +65,9 @@ class Model {
         }
         return resultList;
     }
+
+    void fix(ArrayList<FindedPosition> findedPositions) {
+        resultHex = (Hex)corruptedHex.clone();
+
+    }
 }

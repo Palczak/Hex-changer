@@ -20,6 +20,8 @@ class ConflictDialog extends JDialog {
 
         confirmButton = new JButton("Wykonaj zaznaczone instrukcje");
         confirmButton.addActionListener(e -> updateConflictList());
+        confirmButton.setSize(200,200);
+
 
         for (FindedPosition findedPosition : conflictList) {
             containerList.add(new ConflictContainer(findedPosition));
@@ -30,8 +32,9 @@ class ConflictDialog extends JDialog {
             container.setVisible(true);
         }
 
-        add(confirmButton);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.add(confirmButton);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
         pack();
         setVisible(true);
     }
@@ -49,7 +52,6 @@ class ConflictDialog extends JDialog {
                 updatedList.add(newPosition);
             }
         }
-
 
         conflictList = updatedList;
         hide();

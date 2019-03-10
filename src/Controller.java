@@ -58,7 +58,7 @@ class Controller {
         conflictList.add(p2);
         conflictList.add(p3);
         view.fixConflict(conflictList);
-        System.out.println("dupa");
+        //System.out.println("dupa");
 
     }
 
@@ -82,7 +82,9 @@ class Controller {
                     }
                     if(!conflictList.isEmpty()) {
                         conflictList = view.fixConflict(conflictList);
+                        findedPositions.addAll(conflictList);
                     }
+
 
                 }
             }
