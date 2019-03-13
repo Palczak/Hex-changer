@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ConflictContainer extends JPanel {
-    int fileIndex;
+        int fileIndex;
     ArrayList<ConflictCheckBox> checkBoxList;
 
     public ConflictContainer(FindedPosition findedPosition) {
@@ -27,6 +27,14 @@ public class ConflictContainer extends JPanel {
             this.add(box);
         }
 
+    }
+
+    public int getFileIndex() {
+        return fileIndex;
+    }
+
+    public void setFileIndex(int fileIndex) {
+        this.fileIndex = fileIndex;
     }
 
     private String lineNumber(int index) {

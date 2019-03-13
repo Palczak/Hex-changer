@@ -19,6 +19,10 @@ class Model {
         return instructionSet.isSet() && !corruptedHex.isEmpty();
     }
 
+    public Hex getResultHex() {
+        return resultHex;
+    }
+
     void setInstruction(String patch) throws Exception {
         fileManager.setInstructionDir(patch);
         instructionSet = fileManager.readInstructions();
@@ -69,5 +73,30 @@ class Model {
     void fix(ArrayList<FindedPosition> findedPositions) {
         resultHex = (Hex)corruptedHex.clone();
 
+        for (FindedPosition position : findedPositions) {
+            System.out.println(position.getFileIndex());
+            for (Replace replace : instructionSet.getReplaceList()) {
+                if(replace.fileIndex == position.getFileIndex()) {
+                    for (int hexIndex : position) {
+                        replaceAll(hexIndex, replace);
+                    }
+                }
+            }
+
+            for (Fill fill : instructionSet.getFillList()) {
+                if (fill.fileIndex == position.getFileIndex()) {
+                    for (int hexIndex : position) {
+                        replaceAll(hexIndex, fill);
+                    }
+                }
+            }
+        }
+    }
+
+    private void replaceAll(int startIndex, Replace replace) {
+        //index  - lenght
+        resultHex.replace(startIndex - replace.before.size(), replace.before);
+        resultHex.replace(startIndex, replace.inside);
+        resultHex.replace(startIndex + replace.after.size(), replace.after);
     }
 }

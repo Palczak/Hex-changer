@@ -73,19 +73,27 @@ class Controller {
                 } else {
                     ArrayList<FindedPosition> conflictList = new ArrayList<>();
                     int index = 0;
+                    //tutaj bug
+                    ArrayList<Integer> indexToRemove = new ArrayList<>();
                     for (FindedPosition position : findedPositions) {
                         if (position.isConflict()) {
                             conflictList.add(position);
-                            position.remove(index);
+                            indexToRemove.add(index);
                         }
                         index++;
                     }
                     if(!conflictList.isEmpty()) {
+                        for (int removeIndex : indexToRemove) {
+                            findedPositions.remove(removeIndex);
+                        }
                         conflictList = view.fixConflict(conflictList);
                         findedPositions.addAll(conflictList);
+
                     }
-
-
+                    System.out.println(findedPositions);
+                    System.out.println(model.getInstructionSet());
+                    model.fix(findedPositions);
+                    view.setFixedValue(model.getResultHex());
                 }
             }
         }

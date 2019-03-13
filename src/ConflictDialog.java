@@ -43,6 +43,7 @@ class ConflictDialog extends JDialog {
         ArrayList<FindedPosition> updatedList = new ArrayList<>();
         for (ConflictContainer container : containerList) {
             FindedPosition newPosition = new FindedPosition();
+            newPosition.setFileIndex(container.getFileIndex());
             for (ConflictCheckBox checkBox : container.getCheckBoxList()) {
                 if(checkBox.isSelected()) {
                     newPosition.add(checkBox.getHexIndex());
