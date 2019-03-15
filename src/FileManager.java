@@ -43,6 +43,10 @@ class FileManager {
         setInstructionDir(file);
     }
 
+    void saveResult(String path, Hex result) throws IOException {
+        hexIO.writeHex(path, result);
+    }
+
     Hex getCorruptedHex(String path) throws IOException {
         return hexIO.readHex(path);
     }

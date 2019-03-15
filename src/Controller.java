@@ -34,7 +34,7 @@ class Controller {
                 if(model.isSet()) {
                     startFixListener();
                 }
-                view.showErrorDialog(model.getInstructionSet().toString());
+                //view.showErrorDialog(model.getInstructionSet().toString());
             } catch (IOException e) {
                 view.showErrorDialog(e.getMessage());
             } catch (Exception e) {
@@ -44,8 +44,18 @@ class Controller {
     }
 
     void saveFixedListener() {
-
-
+        String path = view.savePathBin();
+        if (path != null) {
+            if (!model.isResultSet()) {
+                view.showErrorDialog("Plik wynikowy nie został wygenerowany.");
+            } else {
+                try {
+                    model.saveFixed(path);
+                } catch (IOException e) {
+                    view.showErrorDialog(e.getMessage());
+                }
+            }
+        }
     }
 
     void startFixListener() {

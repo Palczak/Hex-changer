@@ -15,9 +15,15 @@ class Model {
         resultHex = new Hex();
     }
 
+    void saveFixed(String path) throws IOException {
+        fileManager.saveResult(path, resultHex);
+    }
+
     boolean isSet() {
         return instructionSet.isSet() && !corruptedHex.isEmpty();
     }
+
+    boolean isResultSet() { return !resultHex.isEmpty(); }
 
     public Hex getResultHex() {
         return resultHex;
