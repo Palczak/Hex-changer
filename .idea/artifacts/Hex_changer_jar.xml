@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Hex changer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hex_changer_jar</output-path>
+    <root id="archive" name="Hex changer.jar">
+      <element id="module-output" name="Hex changer" />
+    </root>
+  </artifact>
+</component>

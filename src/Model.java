@@ -74,7 +74,7 @@ class Model {
         resultHex = (Hex)corruptedHex.clone();
 
         for (FindedPosition position : findedPositions) {
-            System.out.println(position.getFileIndex());
+            //System.out.println(position.getFileIndex());
             for (Replace replace : instructionSet.getReplaceList()) {
                 if(replace.fileIndex == position.getFileIndex()) {
                     for (int hexIndex : position) {

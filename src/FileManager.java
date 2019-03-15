@@ -33,6 +33,11 @@ class FileManager {
         this.instructionDir = instructionDir;
     }
 
+    public File getInstructionDir() {
+        return instructionDir;
+    }
+
+
     void setInstructionDir(String instructionDir) {
         File file = new File(instructionDir);
         setInstructionDir(file);

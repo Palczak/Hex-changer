@@ -8,7 +8,7 @@ class Hex extends ArrayList<Integer> {
             if(get(i).equals(hex.get(0))) {
                 int counter = 0;
                 for(int j = 0; j < hex.size(); j++) {
-                    if(get(i+j).equals(hex.get(j))) {
+                    if(get(i+j).equals(hex.get(j)) || hex.get(j) == -1) {
                         counter++;
                     } else {
                         break;

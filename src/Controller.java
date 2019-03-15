@@ -17,6 +17,9 @@ class Controller {
             try {
                 model.loadCorruptedHex(path);
                 view.setCorruptedValue(model.getCorruptedHex());
+                if(model.isSet()) {
+                    startFixListener();
+                }
             } catch (IOException e) {
                 view.showErrorDialog("Nie udało się wczytać uszkodzonego pliku.\n" + e.getMessage());
             }
@@ -28,6 +31,9 @@ class Controller {
         if(path != null) {
             try {
                 model.setInstruction(path);
+                if(model.isSet()) {
+                    startFixListener();
+                }
                 view.showErrorDialog(model.getInstructionSet().toString());
             } catch (IOException e) {
                 view.showErrorDialog(e.getMessage());
@@ -38,27 +44,7 @@ class Controller {
     }
 
     void saveFixedListener() {
-        ArrayList<FindedPosition> conflictList = new ArrayList<>();
-        FindedPosition p1 = new FindedPosition();
-        FindedPosition p2 = new FindedPosition();
-        FindedPosition p3 = new FindedPosition();
-        p1.setFileIndex(1);
-        p1.add(5);
-        p1.add(10);
-        p1.add(15);
-        p2.setFileIndex(2);
-        p2.add(15);
-        p2.add(30);
-        p2.add(45);
-        p3.add(40);
-        p3.add(80);
-        p3.add(120);
-        p3.setFileIndex(3);
-        conflictList.add(p1);
-        conflictList.add(p2);
-        conflictList.add(p3);
-        view.fixConflict(conflictList);
-        //System.out.println("dupa");
+
 
     }
 
@@ -73,12 +59,11 @@ class Controller {
                 } else {
                     ArrayList<FindedPosition> conflictList = new ArrayList<>();
                     int index = 0;
-                    //tutaj bug
                     ArrayList<Integer> indexToRemove = new ArrayList<>();
                     for (FindedPosition position : findedPositions) {
                         if (position.isConflict()) {
                             conflictList.add(position);
-                            indexToRemove.add(index);
+                            indexToRemove.add(0, index);
                         }
                         index++;
                     }
@@ -90,8 +75,8 @@ class Controller {
                         findedPositions.addAll(conflictList);
 
                     }
-                    System.out.println(findedPositions);
-                    System.out.println(model.getInstructionSet());
+                    //System.out.println(findedPositions);
+                    //System.out.println(model.getInstructionSet());
                     model.fix(findedPositions);
                     view.setFixedValue(model.getResultHex());
                 }
